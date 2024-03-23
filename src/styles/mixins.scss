@@ -1,0 +1,14 @@
+
+@use "./variables.scss" as *;
+
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint) {
+      @content;
+    }
+  }
+  
+  @mixin tablet {
+    @media (min-width: $tab-breakpoint) {
+      @content;
+    }
+  }

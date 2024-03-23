@@ -1,0 +1,13 @@
+@use "../styles/variables.scss" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+    font-family: $main-font-family;
+    margin: 0;
+    padding: 0;
+  }
