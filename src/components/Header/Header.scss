@@ -4,23 +4,23 @@
 
 .header {
     background-color: $secondary_background_color;
-    padding: 1.5rem 1rem;
+    padding: $mobile_lateral_padding;
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
   
     @include tablet {
-      padding: 2rem;
+      padding:0 $tablet_lateral_padding;
       flex-direction: row;
     } 
     @include desktop {
-        padding: 2rem 3.5rem;
+        padding: 0 $desktop_lateral_padding;
         flex-direction: row;
       }
     
     &__logo {
-        height: 10rem;
+        height: 9rem;
         
         @include tablet {
             padding-right: 2rem;
