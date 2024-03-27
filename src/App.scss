@@ -1,6 +1,15 @@
 @use "styles/typography.scss" as *;
 @use "styles/variables.scss" as *;
 @use "./styles/global" as *;
+@use "./styles/mixins" as *;
 
 
-
+.layout{
+    padding: 0 $mobile_lateral_padding;
+    @include tablet {
+      padding:0 $tablet_lateral_padding;
+    } 
+    @include desktop {
+        padding: 0 $desktop_lateral_padding;
+      }
+}

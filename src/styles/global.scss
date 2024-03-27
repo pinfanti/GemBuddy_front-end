@@ -1,4 +1,6 @@
 @use "../styles/variables.scss" as *;
+@use "../styles/mixins.scss" as *;
+
 
 *,
 *::before,
@@ -10,4 +12,60 @@
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+    color: $font_color;
+  }
+
+  h1{
+    padding: $mobile_between_padding 0;    
+    font-size: 1.75rem;
+    @include tablet{
+      padding: $tablet_between_padding 0;
+      font-size: 2rem;      
+    }
+    @include desktop{
+      font-size: 2.5rem;      
+    }
+
+  }
+
+  h3{
+    font-size: 1.2rem;
+    padding: $mobile_between_padding 0;
+    @include tablet{
+      font-size: 1.4rem;
+      padding: $tablet_between_padding 0;     
+    }
+    @include desktop{
+      font-size: 1.7rem;      
+    }
+  }
+  body{
+    background-color: $background_color;    
+  }
+
+  .cards {
+    display: flex; 
+    flex-wrap: wrap;    
+    justify-content: center;
+    gap: 1rem;
+  }  
+   
+  .card__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: $font_color;
+    padding: 1rem;
+  }
+  
+  .card__link img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+    padding-bottom: 1rem;
+    @include tablet{        
+        height: 18rem; 
+    }  
   }

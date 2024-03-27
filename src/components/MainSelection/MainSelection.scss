@@ -1,66 +1,15 @@
-@use "../../styles/variables.scss" as *;
-@use "../../styles/mixins.scss" as *;
 @use "../../styles/global.scss" as *;
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
 
-.selection{
-    padding: 1rem;
-    @include tablet{        
-        padding: $tablet_lateral_padding;
-    }
-    @include desktop{        
-        padding: $desktop_lateral_padding;
-    } 
+.card_main {
+  @include card;
+  @include tablet{
+      width: calc(25% - 1rem); 
+      margin-bottom: $tablet_between_padding;    
 
-    &__info{
-        padding-bottom: 1rem;
-        font-size: 1.2rem;
-        color: $title_color;        
-    }
+  }
 }
-
-.areas {
-    display: flex; 
-    flex-wrap: wrap;    
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .area {
-    width: 100%;
-    background-color: $background_color_cards; 
-    @include tablet{
-        width: calc(25% - 1rem); 
-        margin-bottom: $tablet_between_padding;    
-
-    }
-
-    margin-bottom: $mobile_between_padding; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
-    border-radius: 8px; 
-    overflow: hidden; 
-    
-  }
-  
-  .area__link {
-
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    font-size: 1.3rem;
-    color: $title_color;
-    padding: 1rem;
-  }
-  
-  .area__link img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px 8px 0 0;
-    padding-bottom: 1rem;
-    @include tablet{        
-        height: 10rem; 
-    }  
-  }
 
 
   

@@ -1,0 +1,15 @@
+@use "../../styles/global.scss" as *;
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
+
+.park__description{
+    padding-top: 0;
+}
+
+.card {
+ @include card;
+    @include tablet{
+        width: calc(33% - 1rem);
+
+    }
+}
