@@ -10,7 +10,6 @@ function MainSelection({ meetings }) {
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleImageClick = (event, text) => {
-    const { top, left } = event.target.getBoundingClientRect();
     setTooltipText(text);
     setShowTooltip(true);
   };
@@ -27,7 +26,8 @@ function MainSelection({ meetings }) {
     return (
       <section className="meetings">
         <section className="meetings__header">
-          <Link to={`/park/1`}>
+          <Link to={`/park/1`}> {/*I know it should not be hard coded just not had the time to get the id using the api and the parks table connected by the foreign keys*/}
+
               <img
                 className="return_arrow"
                 src={arrow}
@@ -67,31 +67,71 @@ function MainSelection({ meetings }) {
           </div>
         )}
 
-        {selectedOption === "Locals" && (
+        {meetings && selectedOption === "Locals" && (
           <>
             <section>
               {meetings
                 .filter((meeting) => meeting.receive_payment === 1)
                 .map((meeting) => (
                   <div className="meeting" key={meeting.id}>
-                    <p>{meeting.place}</p>
-                    {/* Render other meeting information */}
+                    <section className="top-card">
+                      <img
+                      className="top-card__image"
+                      src={`http://localhost:8080/${meeting.image}`}
+                      alt="Person leading the meeting"
+                      />
+                      <section classname= "information">
+                        <p classname= "information__name">Organizer: {meeting.first_name} {meeting.last_name}</p>
+                        <p classname= "information__place">Place: {meeting.place}</p>
+                        <p classname= "information__date">Date: {meeting.date}</p>
+                        <p classname= "information__time">Starting Time: {meeting.hour}</p>
+                        <p classname= "information__duration">Duration: Approximately half-day </p> {/*I know it should be a database information, but it is late to fix it now (next iteration I will do it)*/}
+                        <p classname= "information__value">Value: ${meeting.value}</p>
+                      </section> 
+                      <section classname= "description">
+                        <p classname= "description__gem">What we will be doing: {meeting.description_gem}</p>
+                        <p classname= "description__meeting">Description: {meeting.description_meeting}</p>
+                      </section>
+                      <section classname= "button">
+                        <button className="button__interested">Interested</button>
+                        <button className="button__organizer">Know the Organizer</button>
+                      </section>                     
+                    </section> 
                   </div>
                 ))}
             </section>
           </>
         )}
 
-        {selectedOption === "Users" && (
+        {meetings && selectedOption === "Users" && (
           <>
-            <h3>Buddy Up with other Users</h3>
             <section>
               {meetings
                 .filter((meeting) => meeting.receive_payment !== 1)
                 .map((meeting) => (
                   <div className="meeting" key={meeting.id}>
-                    <section className="top_card">
-                      <p>{meeting.place}</p>
+                    <section className="top-card">
+                      <img
+                      className="top-card__image"
+                      src={`http://localhost:8080/${meeting.image}`}
+                      alt=" Person leading the meeting"
+                      />
+                      <section classname= "information">
+                        <p classname= "information__name">Organizer: {meeting.first_name} {meeting.last_name}</p>
+                        <p classname= "information__place">Place: {meeting.place}</p>
+                        <p classname= "information__date">Date: {meeting.date}</p>
+                        <p classname= "information__time">Starting Time: {meeting.hour}</p>
+                        <p classname= "information__duration">Duration: Approximately half-day </p> {/*I know it should be a database information, but it is late to fix it now (next iteration I will do it)*/}
+                        <p classname= "information__value">Value: FREE</p>
+                      </section> 
+                      <section classname= "description">
+                        <p classname= "description__gem">What we will be doing: {meeting.description_gem}</p>
+                        <p classname= "description__meeting">Description: {meeting.description_meeting}</p>
+                      </section>
+                      <section classname= "button">
+                        <button className="button__interested">Interested</button>
+                        <button className="button__organizer">Know the Organizer</button>
+                      </section>               
                     </section>                    
                   </div>
                 ))}
@@ -101,7 +141,11 @@ function MainSelection({ meetings }) {
       </section>
     );
   } else {
-    return null;
+    return (
+      <section className="meetings">
+        <p>No meetings data available.</p>
+      </section>
+    );
   }
 }
 
