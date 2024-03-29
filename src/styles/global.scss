@@ -69,3 +69,17 @@
         height: 18rem; 
     }  
   }
+  .return_arrow{
+    height: 1rem;
+    width: 1rem;
+    margin-right: $mobile_between_padding;
+    @include tablet{
+      height: 1.3rem;
+      width: 1.3rem;
+      margin-right: $tablet_between_padding;     
+    }
+    @include desktop{
+      height: 1.6rem;
+      width: 1.6rem;    
+    }
+  }

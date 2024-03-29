@@ -4,16 +4,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import MainPage from "./pages/MainPage/MainPage";
 import ParkPage from "./pages/ParkPage/ParkPage";
+import MeetingsPage from "./pages/MeetingsPage/MeetingsPage";
 
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
+      <p className="welcome" >Welcome Priscila</p>
       <div className="layout">        
         <Routes>
           <Route path= "/" element={<MainPage/>}/>
-          <Route path="/park/:id" element ={<ParkPage/>}/>   
+          <Route path="/park/:id" element ={<ParkPage/>}/>
+          <Route path="/meetings/:id" element ={<MeetingsPage/>}/>      
         </Routes>
       </div>
     </BrowserRouter>

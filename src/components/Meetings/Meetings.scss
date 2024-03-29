@@ -1,0 +1,37 @@
+
+  .meetings {
+    position: relative;
+    &__info{
+        padding-top: 0;
+    }
+    &__header{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+  }
+  
+  .option_mark, .tooltip__icon {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-right: 1rem;
+  }
+
+  .tooltip {
+    position: absolute;
+    top: 70%;
+    left: calc(20%); 
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+  }
+
+  
+  
+
+
+  
