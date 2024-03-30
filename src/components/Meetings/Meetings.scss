@@ -62,13 +62,23 @@
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     @include tablet{
         width: calc(50% - 1rem);
     }
     @include desktop{
         width: calc(33% - 1rem);
+    }    
+  }
+
+  .delete{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 0.5rem;
+    &__option{
+      color:red;
     }
-    
+
   }
   
   .top-card {    
@@ -114,6 +124,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    margin-top: auto; 
     
     &__interested{
         margin-right: 0.5rem;

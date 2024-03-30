@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import MainPage from "./pages/MainPage/MainPage";
 import ParkPage from "./pages/ParkPage/ParkPage";
 import MeetingsPage from "./pages/MeetingsPage/MeetingsPage";
+import AddMeetingsPage from "./pages/AddMeetingPage/AddMeetingPage";
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
         <Routes>
           <Route path= "/" element={<MainPage/>}/>
           <Route path="/park/:id" element ={<ParkPage/>}/>
-          <Route path="/meetings/:id" element ={<MeetingsPage/>}/>      
+          <Route path="/meetings/:id" element ={<MeetingsPage/>}/> 
+          <Route path="/addmeetings/:id" element ={<AddMeetingsPage/>}/>      
         </Routes>
       </div>
     </BrowserRouter>
