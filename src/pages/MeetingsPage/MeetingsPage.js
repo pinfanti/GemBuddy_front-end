@@ -23,7 +23,6 @@ const MeetingsPage = () => {
     };
 
     getMeetings();
-    console.log({meetings});
 
   }, [id]); 
    

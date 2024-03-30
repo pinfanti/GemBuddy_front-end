@@ -1,6 +1,6 @@
 import "./Meetings.scss";
 import React, { useState } from "react";
-import question_icon from "../../assets/icons/question_mark.png";
+import info from "../../assets/icons/info_icon.png";
 import { Link } from "react-router-dom";
 import arrow from "../../assets/icons/right_arrow.png";
 
@@ -22,45 +22,94 @@ function MainSelection({ meetings }) {
     setSelectedOption(event.target.value);
   };
 
+  // Function to convert ISO date string to YYYY-MM-DD format
+function convertISOToYYYYMMDD(isoDateString) {
+
+  const date = new Date(isoDateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+  const day = String(date.getDate()).padStart(2, '0');
+  const formattedDate = `${year}-${month}-${day}`;
+
+  return formattedDate;
+}
+
+  const card =(meeting) =>{
+    return(
+      <div className="meeting" key={meeting.id}>
+        <section className="top-card">
+          <img
+            className="top-card__image"
+            src={`http://localhost:8080/${meeting.image}`}
+            alt="Person leading the meeting"
+          />
+          <section className="information">
+            <p className="information__name"> <strong>{meeting.first_name} {meeting.last_name}</strong></p>
+            <p className="information__place"> <strong>Place:</strong> {meeting.place}</p>
+            <p className="information__date"> <strong>Date:</strong> {convertISOToYYYYMMDD(meeting.date)}</p>
+            <p className="information__time"> <strong>Starting Time:</strong> {meeting.hour} am</p>
+            <p className="information__duration"> <strong>Duration:</strong> Approximately half-day </p>
+            <p className="information__value"> <strong>Value:</strong> {meeting.value ? `$${meeting.value}` : "FREE"}</p>
+          </section>
+        </section>
+          <section className="description">
+            <p> <strong>What we will be doing:</strong></p>
+            <p className="description__gem" >{meeting.description_gem}</p>
+            <p> <strong>Description:</strong></p>
+            <p className="description__meeting" >{meeting.description_meeting}</p>
+          </section>
+          <section className="buttons">
+            <button className="buttons__interested" >Interested</button>
+            <button className="buttons__organizer"> Organizer</button>
+          </section>                  
+      </div>
+    )
+  }
+
   if (meetings) {
     return (
       <section className="meetings">
         <section className="meetings__header">
-          <Link to={`/park/1`}> {/*I know it should not be hard coded just not had the time to get the id using the api and the parks table connected by the foreign keys*/}
-
-              <img
-                className="return_arrow"
-                src={arrow}
-                alt="Arrow back icon"
-              />
-            </Link>  
+          <Link to={`/park/1`}>
+            <img
+              className="return_arrow"
+              src={arrow}
+              alt="Arrow back icon"
+            />
+          </Link>
           <h1>Buddy ups</h1>
-        </section>        
+        </section>
         <h3 className="meetings__info">
           We have two options of buddy-ups meetings that we offer. Please pick one.
         </h3>
-        <label>
-          <input className="meetings__option" type="radio" name="meetingType" value="Locals" onChange={handleRadioButtonChange} /> Buddy ups with locals.
-          <img
-            className="option_mark"
-            src={question_icon}
-            alt="Question Mark icon"
-            onMouseEnter={(e) => handleImageClick(e, "Local people that organize meetings to show you hidden gems in the area, these meetings are charged local tours")}
-            onMouseLeave={handleMouseLeave}
-          />
-        </label>
-        <br />
-        <label>
-          <input className="meetings__option" type="radio" name="meetingType" value="Users" onChange={handleRadioButtonChange} /> Buddy ups organized by users.
-          <img
-            className="option_mark"
-            src={question_icon}
-            alt="Question Mark icon"
-            onMouseEnter={(e) => handleImageClick(e, "Do you wanna connect with new people and discover a new place? That is your choice, with no charges.")}
-            onMouseLeave={handleMouseLeave}
-          />
-        </label>
-        <br />
+        <section className="selectors">
+          <label>
+            <input className="meetings__option" type="radio" name="meetingType" value="Locals" onChange={handleRadioButtonChange} /> <label className="meetings__label">Buddy ups with locals.</label> 
+            <img
+              className="option_mark"
+              src={info}
+              alt="Information icon"
+              onMouseEnter={(e) => handleImageClick(e, "Local people that organize meetings to show you hidden gems in the area, these meetings are charged local tours")}
+              onMouseLeave={handleMouseLeave}
+            />
+          </label>
+          <br />
+          <label>
+            <input className="meetings__option" type="radio" name="meetingType" value="Users" onChange={handleRadioButtonChange} /><label className="meetings__label"> Buddy ups organized by users.</label> 
+            <img
+              className="option_mark"
+              src={info}
+              alt="Information icon"
+              onMouseEnter={(e) => handleImageClick(e, "Do you wanna connect with new people and discover a new place? That is your choice, with no charges.")}
+              onMouseLeave={handleMouseLeave}
+            />
+          </label>
+          <br />
+        </section>
+        <section className="new-meeting">
+          <button className="button__add"> + New Meeting </button>
+        </section> 
+                
         {showTooltip && (
           <div className="tooltip">
             <p>{tooltipText}</p>
@@ -68,75 +117,23 @@ function MainSelection({ meetings }) {
         )}
 
         {meetings && selectedOption === "Locals" && (
-          <>
-            <section>
-              {meetings
-                .filter((meeting) => meeting.receive_payment === 1)
-                .map((meeting) => (
-                  <div className="meeting" key={meeting.id}>
-                    <section className="top-card">
-                      <img
-                      className="top-card__image"
-                      src={`http://localhost:8080/${meeting.image}`}
-                      alt="Person leading the meeting"
-                      />
-                      <section classname= "information">
-                        <p classname= "information__name">Organizer: {meeting.first_name} {meeting.last_name}</p>
-                        <p classname= "information__place">Place: {meeting.place}</p>
-                        <p classname= "information__date">Date: {meeting.date}</p>
-                        <p classname= "information__time">Starting Time: {meeting.hour}</p>
-                        <p classname= "information__duration">Duration: Approximately half-day </p> {/*I know it should be a database information, but it is late to fix it now (next iteration I will do it)*/}
-                        <p classname= "information__value">Value: ${meeting.value}</p>
-                      </section> 
-                      <section classname= "description">
-                        <p classname= "description__gem">What we will be doing: {meeting.description_gem}</p>
-                        <p classname= "description__meeting">Description: {meeting.description_meeting}</p>
-                      </section>
-                      <section classname= "button">
-                        <button className="button__interested">Interested</button>
-                        <button className="button__organizer">Know the Organizer</button>
-                      </section>                     
-                    </section> 
-                  </div>
-                ))}
-            </section>
-          </>
+          <section className="wrapper-meetings">
+            {meetings
+              .filter((meeting) => meeting.receive_payment === 1)
+              .map((meeting) => (
+                card(meeting)                
+              ))}
+          </section>
         )}
 
         {meetings && selectedOption === "Users" && (
-          <>
-            <section>
-              {meetings
-                .filter((meeting) => meeting.receive_payment !== 1)
-                .map((meeting) => (
-                  <div className="meeting" key={meeting.id}>
-                    <section className="top-card">
-                      <img
-                      className="top-card__image"
-                      src={`http://localhost:8080/${meeting.image}`}
-                      alt=" Person leading the meeting"
-                      />
-                      <section classname= "information">
-                        <p classname= "information__name">Organizer: {meeting.first_name} {meeting.last_name}</p>
-                        <p classname= "information__place">Place: {meeting.place}</p>
-                        <p classname= "information__date">Date: {meeting.date}</p>
-                        <p classname= "information__time">Starting Time: {meeting.hour}</p>
-                        <p classname= "information__duration">Duration: Approximately half-day </p> {/*I know it should be a database information, but it is late to fix it now (next iteration I will do it)*/}
-                        <p classname= "information__value">Value: FREE</p>
-                      </section> 
-                      <section classname= "description">
-                        <p classname= "description__gem">What we will be doing: {meeting.description_gem}</p>
-                        <p classname= "description__meeting">Description: {meeting.description_meeting}</p>
-                      </section>
-                      <section classname= "button">
-                        <button className="button__interested">Interested</button>
-                        <button className="button__organizer">Know the Organizer</button>
-                      </section>               
-                    </section>                    
-                  </div>
-                ))}
-            </section>
-          </>
+          <section className="wrapper-meetings">
+            {meetings
+              .filter((meeting) => meeting.receive_payment !== 1)
+              .map((meeting) => (
+                card(meeting)              
+              ))}
+          </section>
         )}
       </section>
     );

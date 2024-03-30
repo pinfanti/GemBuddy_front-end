@@ -1,25 +1,37 @@
 
+@use "../../styles/global.scss" as *;
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
+
   .meetings {
     position: relative;
+    
     &__info{
         padding-top: 0;
     }
+    &__label{
+        font-size: 1.15rem;
+        @include tablet{
+            font-size: 1.3rem;
+        }
+    }
+
     &__header{
         display: flex;
         flex-direction: row;
         align-items: center;
     }
   }
-  
+
   .option_mark, .tooltip__icon {
-    height: 1.2rem;
-    width: 1.2rem;
-    margin-right: 1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    margin-left: 0.5rem;
   }
 
   .tooltip {
     position: absolute;
-    top: 70%;
+    top: 120px;
     left: calc(20%); 
     z-index: 999;
     background-color: rgba(5, 30, 51, 0.8);
@@ -29,6 +41,89 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     font-size: 14px;
   }
+
+  .new-meeting{
+    display:flex;
+    justify-content: flex-end;
+  }  
+
+  .wrapper-meetings{
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 1rem; 
+  }
+
+  .meeting {
+    background-color: $meeting_background;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    @include tablet{
+        width: calc(50% - 1rem);
+    }
+    @include desktop{
+        width: calc(33% - 1rem);
+    }
+    
+  }
+  
+  .top-card {    
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  
+  .top-card__image {
+    width: 4.5rem;
+    height: 4.5rem;   
+    border-radius: 50%;
+    margin: 1rem;
+    @include tablet{
+        width: 6rem;
+        height: 6rem;
+    }
+    @include desktop{
+        width: 9.375rem;
+        height: 9.375rem;
+    }
+  }
+  
+  .information {
+    width: 100% -100px;
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+
+   &__name{
+    font-size: 1.5rem;
+    padding-bottom: 5px;
+   }
+  }
+
+  .description{
+    &__gem{
+        padding-bottom: 5px;
+    }
+  }
+  .buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+    &__interested{
+        margin-right: 0.5rem;
+    }
+    &__interested, &__organizer{
+        margin-bottom: 0.5rem;
+    }
+  }
+  
+  
 
   
   

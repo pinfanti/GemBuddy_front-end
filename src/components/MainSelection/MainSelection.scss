@@ -2,6 +2,7 @@
 @use "../../styles/mixins.scss" as *;
 @use "../../styles/variables.scss" as *;
 
+
 .card_main {
   @include card;
   @include tablet{

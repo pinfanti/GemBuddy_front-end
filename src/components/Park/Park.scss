@@ -10,7 +10,9 @@
  @include card;
     @include tablet{
         width: calc(33% - 1rem);
-
+    }
+    @include desktop{
+        width: calc(25% - 1rem);
     }
 }
 

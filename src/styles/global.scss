@@ -39,14 +39,21 @@
       font-size: 1.7rem;      
     }
   }
+  
+  p{
+    font-size: 1rem;
+    @include tablet{
+      font-size: 1.2rem;
+    }
+  }
+
   body{
     background-color: $background_color;    
   }
 
   .cards {
     display: flex; 
-    flex-wrap: wrap;    
-    justify-content: center;
+    flex-wrap: wrap;
     gap: 1rem;
   }  
    
@@ -81,5 +88,24 @@
     @include desktop{
       height: 1.6rem;
       width: 1.6rem;    
+    }
+  }
+
+  button{
+    background-color:$background_button;
+    color: $font_color;
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    border: none; 
+    border-radius: 1rem;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    margin: $mobile_between_padding;
+    @include tablet{
+      margin: $tablet_between_padding;
+      font-size: 1.2rem;
+    }
+    button:hover {
+      background-color: #000000; /* Darker blue color on hover */
     }
   }
