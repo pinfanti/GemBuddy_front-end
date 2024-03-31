@@ -6,6 +6,7 @@ import MainPage from "./pages/MainPage/MainPage";
 import ParkPage from "./pages/ParkPage/ParkPage";
 import MeetingsPage from "./pages/MeetingsPage/MeetingsPage";
 import AddMeetingsPage from "./pages/AddMeetingPage/AddMeetingPage";
+import OrganizerPage from "./pages/OrganizerPage/OrganizerPage";
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
           <Route path= "/" element={<MainPage/>}/>
           <Route path="/park/:id" element ={<ParkPage/>}/>
           <Route path="/meetings/:id" element ={<MeetingsPage/>}/> 
-          <Route path="/addmeetings/:id" element ={<AddMeetingsPage/>}/>      
+          <Route path="/addmeetings/:id" element ={<AddMeetingsPage/>}/>
+          <Route path="/organizer/:id" element ={<OrganizerPage/>}/>   
         </Routes>
       </div>
     </BrowserRouter>
