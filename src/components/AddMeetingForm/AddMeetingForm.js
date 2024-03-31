@@ -15,7 +15,7 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
   if (!meeting) {
     meeting = {};
   }
-  
+
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -137,11 +137,11 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
 
             <footer className="footer">
               <Link to={`/meetings/${id}`}>
-                <button className="footer__button footer__cancel-button">
+                <button className="footer__button">
                   Cancel
                 </button>
               </Link>
-              <button className="footer__button footer__submit-button">
+              <button className="footer__button">
                 Submit
               </button>
             </footer>

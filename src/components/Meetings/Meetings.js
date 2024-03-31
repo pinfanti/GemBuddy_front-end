@@ -3,12 +3,23 @@ import React, { useState } from "react";
 import info from "../../assets/icons/info_icon.png";
 import { Link, useParams } from "react-router-dom";
 import arrow from "../../assets/icons/right_arrow.png";
+import axios from "axios";
 
 function Meetings({ meetings }) {
   const { id } = useParams();
   const [tooltipText, setTooltipText] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("")  
+
+  const handleDeleteMeeting = async (meetingId) => {
+    try {
+      // Send a DELETE request to the backend API to delete the meeting
+      await axios.delete(`http://localhost:8080/api/meetings/meeting/${meetingId}`);
+      window.location.reload(false);
+    } catch (error) {
+      console.error("Error deleting meeting:", error);
+    }
+  };
 
 
   const handleImageClick = (event, text) => {
@@ -41,7 +52,7 @@ function Meetings({ meetings }) {
       <div className="meeting" key={meeting.id}>
         {meeting.user_id === 10 && (
           <section className="delete">
-            <p className="delete__option">Delete</p>
+            <p className="delete__option" onClick={() => handleDeleteMeeting(meeting.id)}>Delete</p>
           </section>
         )}
         <section className="top-card">
@@ -86,8 +97,8 @@ function Meetings({ meetings }) {
           <p className="description__meeting">{meeting.description_meeting}</p>
         </section>
         <section className="buttons">
-          <button className="buttons__interested">Interested</button>
-          <button className="buttons__organizer"> Organizer</button>
+          <Link><button className="buttons__interested">Interested</button></Link>
+          <Link to={`organizer/${meeting.user_id}`}><button className="buttons__organizer"> Organizer</button></Link>
         </section>
       </div>
     );
@@ -168,7 +179,7 @@ function Meetings({ meetings }) {
             <p>{tooltipText}</p>
           </div>
         )}
-
+        
         {meetings && selectedOption === "" && Array.isArray(meetings) && (
           <section className="wrapper-meetings">
             {meetings.map((meeting) => card(meeting))}

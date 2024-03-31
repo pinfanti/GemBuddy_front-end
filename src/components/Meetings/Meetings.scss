@@ -76,8 +76,12 @@
     justify-content: center;
     padding-bottom: 0.5rem;
     &__option{
-      color:red;
+      color:rgb(14, 45, 57);
+      &:hover {
+        color: red; // Change font color to red on hover
+      }
     }
+    
 
   }
   
