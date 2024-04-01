@@ -2,14 +2,12 @@ import "./InterestedForm.scss";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import arrow from "../../assets/icons/right_arrow.png";
-import { useParams } from "react-router-dom";
 
 function ErrorRequiredMessage() {
   return <p className="meeting-form__error">This field is required</p>;
 }
 
-function InterestedForm({ meeting, onSubmit }) {    
-  const { id } = useParams();
+function InterestedForm({ meeting, onSubmit }) {
   const [missing, setMissing] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
