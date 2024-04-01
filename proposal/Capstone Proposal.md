@@ -2,26 +2,26 @@
 
 ## Overview
 
-The Guide serves as a dynamic platform bridging travelers with local tourist guides for tailored tours in various destinations. Our application not only provides comprehensive destination insights but also showcases a variety of tours available and connects users with proficient guides offering personalized services. Users can review guides, engage in clarifying queries, and finalize guided tour arrangements seamlessly.
+GemBuddy serves as a dynamic platform where individuals can join meetings with local experts, such as tourist guides, or connect with others seeking companionship for activities like hiking or exploring wildlife in the Rocky Mountains. Our application not only offers comprehensive information about the Rocky Mountains but also facilitates connections between users seeking to explore the area and knowledgeable user guides. Users can engage in clarifying queries and seamlessly finalize arrangements for guided tours.
 
 ### Problem
 
-"Exploring numerous locales across countries, states (provinces), cities, and tourist hotspots presents an extensive array of options for integration into the application. To streamline this process, I plan to leverage the GeoDB API, initially focusing on data from Canada. Additionally, setting up a server with endpoints tailored for guides' profiles is essential. Integrating a map feature to visually represent locations is wanted, albeit requiring further learning on my part. Implementing a secure charge flow for guide services may pose challenges, particularly in terms of validation procedures, which I anticipate tackling as part of the project's development."
+The Rocky Mountains encompass a vast area offering numerous activities, but finding options beyond the popular tourist attractions can be challenging for those unfamiliar with the region. Additionally, many activities in and around the mountains are best enjoyed with experienced companions who are familiar with the area's potential dangers, such as getting lost or encountering wildlife. Therefore, having companionship can enhance safety and overall enjoyment of the outdoor experiences. 
 
 ### User Profile
 
-"Travellers - Individuals seeking local travel guides who offer personalized experiences in specific locations and tours. Through our platform, travellers can effortlessly browse guides based on their location and preferred tour options. They can review guides based on previous evaluations and easily connect with them to book their services.
+"Users seeking meet-ups with local guides or fellow users can utilize our platform seamlessly. Through our platform, users can effortlessly browse available guides or meet-ups based on their location and preferred tour options. They can easily connect with these guides or other users to book services or participate in meetings."
 
-Guides - On the other hand, are passionate individuals offering guide services within their region. By registering on our website, they gain the opportunity to showcase their expertise by listing their services along with pricing details. This allows them to reach a wider audience of travellers seeking authentic experiences tailored to their preferences."
+ User guides - On the other hand, are passionate individuals offering guide services within their region. By registering on our website, they gain the opportunity to showcase their expertise by listing their services along with pricing details. This allows them to reach a wider audience of travellers seeking authentic experiences tailored to their preferences."
 
 ### Features
 
-- As a user, I want to be able to find a local guide in the location I am travelling. 
+- As a user, I want to be able to find a local guides in the areas of the park that i want to visit. 
 - As a user, I want to be able to contact this guide for questions and contact their service. 
-- As a user, I want to see a list of guides that I can filter by price or by rate. 
-- As a user, I want to see a list of services that this guides offer with prices based on the location selected. 
-
-- As a user, I want to be able comment on guides. 
+- As a user, i want to be able to contact other people organizing meet ups, just to do activities as a group.
+- As a user, I want to see a list of meetings that I can filter by price. 
+- As a user, I want to organize a meet-up and add it to the list of meetings. 
+- As a user, I want to be able to delete a meeting that I regreted creating. 
 
 ## Implementation
 
@@ -37,7 +37,6 @@ Guides - On the other hand, are passionate individuals offering guide services w
 - Server libraries:
     - knex
     - express
-    - bcrypt for password hashing (maybe)
 
 ### APIs
 
@@ -47,201 +46,194 @@ Create a API for the guides using mySQL.
 
 Main Page: 
 -Provides general information about the website.
--Allows travellers to input their destination and dates.
+-Allows travellers to input their park destination.
 
-Destination Page:
--Displays information about the selected destination, including attractions, points of interest, and activities.
--Lists available tours in that region.
+Park Page:
+-Displays information about the selected park, including the list of activities available in that area.
+-Lists available activities in that region.
 
-Tour Page:
--Shows details of a specific tour.
--Provides a list of guides offering that tour, which can be filtered based on their evaluations.
+Meetings Page:
+-Shows a list of tours related with the activie you selected
+-Filter if you want to meet a local and pay for a meeting or meet up with a group of users for the companionship. 
+-Create meetings.
+-Delete Mettings.
+-Show interest in meetings and contact the organizers of the meetings.
 
-Guide Page:
--Presents detailed information about a specific guide, including their profile, experience, and specialization.
--Displays comments and reviews from previous travellers.
--Lists the services offered by the guide, filtered based on the selected location.
+Add Meetings:
+-Form to add a new meeting
 
-Service Page:
--Displays options for the selected service offered by the guide.
--Includes pricing information and allows travellers to contact the guide for questions or booking.
+Organizer Page:
+-See infomation about the organizer of the meeting you are interested.
+-Contact this organizer for inquires, questions, or concerns. 
 
+Interested Page:
+-Form to contact the organizer showing interest.
 
 ### Mockups
 
 #### Home Page
-![](home.jpg)
+![](home_mobile.png)
+![](home_desktop.png)
 
-#### Destination Page
-![](destination.jpg)
+#### Parks Page
+![](parks_mobile.png)
+![](parks_desktop.png)
 
-#### Tour Page
-![](tour.jpg)
+#### Buddy-ups Page
+![](buddyups_mobile.png)
+![](buddyups_desktop.png)
 
-#### Guide Page
-![](guide.jpg)
+#### Add-Meetings Page
+![](addmeeting_mobile.png)
+![](addmeeting_desktop.png)
 
-#### Service Page
-![](service.jpg)
+#### Interested Page
+![](interested_mobile.png)
+![](interested_desktop.png)
 
-#### Logo and color scheme
-![](logo.jpg)
+#### Organizer Page
+![](organizer_mobile.png)
+![](organizer_desktop.png)
 
-### Data
-
-![](sql-diagram.png)
+### Contact Organizer page
+![](contact_mobile.png)
+![](contact_desktop.png)
 
 ### Endpoints
 
-**GET /location/:id**
+**GET /api/parks**
 
-- Get location selected by the user to present information abou te location selected. 
+- Get the list of parks available in the area. 
 
 Response:
 ```
 [
     {
         "id": 1,
+        "park_name": "Jasper National Park",
+        "image": "/images/Jasper.jpg",
+        "city": "Jasper",
         "country": "Canada",
-        "province": "Alberta",
-        "city: "Banff"
-        "description": "Located on the rocky mountains..."
+        "description": "Jasper National Park, located in the Canadian Rockies, is renowned for its stunning mountain landscapes, glaciers, lakes, and abundant wildlife.",
+        "created_at": "2024-03-24T04:47:15.000Z",
+        "updated_at": "2024-03-24T04:47:15.000Z"
     },
     ...
 ]
 ```
 
-**GET/guides**
+**GET /api/parks/:id**
 
-- Returns a list of guides that offers services in location selected. 
-
-
-Response:
-```
-{
-    "name": "John Doe,
-    "description ": " Local of the Banff area Jonh...",
-}, 
-{
-    "name": "John Doe,
-    "description ": " Local of the Banff area Jonh...",
-}
-```
-**GET/guide/:id**
-
-- Returns a specific guide information selected. 
-
+- Returns a unique park, selected by id.
 
 Response:
 ```
 {
-    "name": "John Doe,
-    "description ": " Local of the Banff area Jonh...",
+    "id": 1,
+    "park_name": "Jasper National Park",
+    "image": "/images/Jasper.jpg",
+    "city": "Jasper",
+    "country": "Canada",
+    "description": "Jasper National Park, located in the Canadian Rockies, is renowned for its stunning mountain landscapes, glaciers, lakes, and abundant wildlife.",
+    "created_at": "2024-03-24T04:47:15.000Z",
+    "updated_at": "2024-03-24T04:47:15.000Z"
+}
+```
+**GET/api/activities/:id**
+
+- Returns a list of activities related with the park selected.
+
+Response:
+```
+{
+    "id": 1,
+    "park_id": 1,
+    "activitie": "Trails",
+    "image": "images/Hiking.jpg",
+    "description": "Hiking in the Canadian Rockies offers adventurers a chance to immerse themselves in the stunning natural beauty of the mountainous landscape.",
+    "created_at": "2024-03-26T20:17:02.000Z",
+    "updated_at": "2024-03-26T20:17:02.000Z"
 }
 ```
 
 
-**GET/tours**
+**GET/api/mettings/:id**
 
-- Returns a list of tours related with the location selected 
+- Returns a list of meetings related with the activitie selected.
+
+Response:
+```
+{
+        "id": 1,
+        "user_id": 1,
+        "place": "Valley of the Five Lakes Trail",
+        "date": "2024-03-27T06:00:00.000Z",
+        "hour": "10:00:00",
+        "receive_payment": 1,
+        "value": "50.00",
+        "description_gem": "Discussing nature photography",
+        "description_meeting": "Meeting with John Doe to discuss our upcoming photography trip to Valley of the Five Lakes Trail in Jasper.",
+        "activity_id": 1,
+        "first_name": "John",
+        "last_name": "Doe",
+        "image": "/images/person1.jpeg"
+    }
+
+```
+
+**POST/api/mettings/:id**
+
+- Post a new meeting realted with the park and activitie selected. Response 201 Created. 
+
+Response:
+```
+{
+    "id": 43,
+    "user_id": 10,
+    "place": "Test Trail",
+    "date": "2024-04-27",
+    "hour": "11:00:00",
+    "receive_payment": 1,
+    "value": 50,
+    "description_gem": "Most beatiful lake around",
+    "description_meeting": "Meeting with Priscila to make a hike and discover an hiden waterfall.",
+    "activity_id": 1
+}
+```
+
+**GET//api/mettings/meeting/:id**
+
+- Returns a unique meeting selected. 
 
 
 Response:
 ```
 {
     "id": 1,
-    "tittle ": "Lake Louise",
-    "body": Lake Louise is located in the heart of the rocky mountains, with emerald color water...
-}, 
-{
-    "id": 1,
-    "tittle ": "Lake Louise",
-    "body": Lake Louise is located in the heart of the rocky mountains, with emerald color water...
-}, 
-
-```
-
-**GET/tour/id**
-
-- Returns a selected tour 
-
-
-Response:
-```
-{
-    "id": 1,
-    "tittle ": "Lake Louise",
-    "body": Lake Louise is located in the heart of the rocky mountains, with emerald color water...
+    "user_id": 1,
+    "place": "Valley of the Five Lakes Trail",
+    "date": "2024-03-27T06:00:00.000Z",
+    "hour": "10:00:00",
+    "receive_payment": 1,
+    "value": "50.00",
+    "description_gem": "Discussing nature photography",
+    "description_meeting": "Meeting with John Doe to discuss our upcoming photography trip to Valley of the Five Lakes Trail in Jasper.",
+    "activity_id": 1,
+    "first_name": "John",
+    "last_name": "Doe",
+    "image": "/images/person1.jpeg",
+    "email": "john@example.com",
+    "description": "Passionate about exploring the great outdoors and seeking thrilling adventures."
 }
 ```
 
-**GET/services**
+**GET//api/mettings/meeting/:id**
 
-- Returns a list of services offered by guide selected.
-
-
-Response:
-```
-{
-    "id": 1,
-    "tittle ": "Hiking at Lake Louise",
-    "description": Lake Louise is located in the heart of the rocky mountains, with emerald color water...,
-    "price: : 100,
-}
-```
-
-**GET/service/"id**
-
-- Returns a service offered by guide selected.
-
-
-Response:
-```
-{
-    "id": 1,
-    "tittle ": "Hiking at Lake Louise",
-    "description": Lake Louise is located in the heart of the rocky mountains, with emerald color water...,
-    "price: : 100,
-}
-```
-
-**POST /comment**
-
-- Post a comment and rate your guide. 
-
-
-Response:
-```
-{
-    "id": 1,
-    "name": "John Doe",
-    "guide_id": 1,
-    "comment ": "Best guide in town" ,
-    "userRating": 5,
-    "
-}
-```
-
-**get/comments**
-
-- Gets the list of comments related with user
-
-Response:
-```
-{
-    {
-    "id": 1,
-    "name": "John Doe",
-    "comment ": "Best guide in town" ,
-    "userRating": 5,
-    "
-}
-}
-```
+- Delete meeting selected.
 
 ### Auth
 
-To be discussed if i will implement the Login page.  
+To be implemented in a next iteration. 
 
 ## Roadmap
 
@@ -253,7 +245,7 @@ To be discussed if i will implement the Login page.
 
 - Create migrations
 
-- Gather 2 location in Canada sample, 5 tours by city, 3 guides at least by tour, few comments to each guide, and few services that this guides can offer
+- Gather all the parks around the rocky mountain, , 4 different activities, 10 users, 10 different meetings. 
 
 - Create seeds.
 
@@ -263,26 +255,26 @@ Feature Main Page:
 -Provides general information about the website.
 -Allows travellers to input their destination and dates.
 
-Feature Destination Page:
--Created the GET location and GET tour list.
--Displays information about the selected destination, including attractions, points of interest, and activities on the front end.
--Lists available tours in that region.
+Feature Park Page:
+-Displays information about the selected park, including the list of activities available in that area.
+-Lists available activities in that region.
 
-Feature Tour Page:
--Created the GET tour by id and GET guides list.
--Shows details of a specific tour.
--Provides a list of guides offering that tour, which can be filtered based on their evaluations.
+Feature Meetings Page:
+-Shows a list of tours related with the activie you selected
+-Filter if you want to meet a local and pay for a meeting or meet up with a group of users for the companionship. 
+-Create meetings.
+-Delete Mettings.
+-Show interest in meetings and contact the organizers of the meetings.
 
-Feature Guide Page:
--Create the GET specific guide and The GET list of guides
--Presents detailed information about a specific guide, including their profile, experience, and specialization.
--Displays comments and reviews from previous travellers.
--Lists the services offered by the guide, filtered based on the selected location.
+feature Add Meetings:
+-Form to add a new meeting
 
-Service Page:
-- Create the GET point for the sevice selected. 
--Displays options for the selected service offered by the guide.
--Includes pricing information and allows travellers to contact the guide for questions or booking.
+Feature Organizer Page:
+-See infomation about the organizer of the meeting you are interested.
+-Contact this organizer for inquires, questions, or concerns. 
+
+Feature Interested Page:
+-Form to contact the organizer showing interest.
 
 ## Nice-to-haves
 

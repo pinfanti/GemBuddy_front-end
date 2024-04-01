@@ -39,8 +39,21 @@
       font-size: 1.7rem;      
     }
   }
+
+  h4{
+    font-size: 1.1rem;
+    padding-bottom: $mobile_between_padding;
+    @include tablet{
+      font-size: 1.3rem;
+      padding-bottom: $tablet_between_padding ;     
+    }
+    @include desktop{
+      font-size: 1.5rem;      
+    }
+
+  }
   
-  p{
+  p, label{
     font-size: 1rem;
     @include tablet{
       font-size: 1.2rem;
@@ -109,3 +122,66 @@
       background-color: #000000; /* Darker blue color on hover */
     }
   }
+
+  .fields {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include tablet{
+      width: 75%;
+    }
+    @include desktop{
+      width: 50%;
+    }
+  }
+
+  .input,
+  .textarea, .input--invalid,.textarea--invalid {
+    margin-bottom: 1rem;
+    background-color: #a1d7f0;
+    color: #0e485e;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+  }
+  .input--invalid,.textarea--invalid {
+    margin-bottom: 0;
+  }
+  
+  .input {
+    height: 2rem;
+    &:active, &:focus {
+      border-color: aqua;
+      outline: 1px solid black;
+      &--invalid{
+        border: 1px solid red;
+
+      }
+    }
+    
+  }
+  
+  .textarea, .textarea--invalid  {
+    height: 100px;
+    vertical-align: top;
+  }
+
+  .meeting-form__error {
+    color:red;
+    font-size: 0.9rem;
+  }
+  
+  .fields__label{
+    padding-bottom: 5px;
+  }
+
+.meeting-form__success{
+  color: darkblue;
+}
+
+.footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+

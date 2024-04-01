@@ -25,7 +25,7 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
       date: event.target.date.value,
       hour: event.target.time.value,
       receive_payment: 1, // Hardcoded for now
-      value: 50.00, // Hardcoded for now
+      value: 50.0, // Hardcoded for now
       description_gem: event.target.description_gem.value,
       description_meeting: event.target.description_meeting.value,
       activity_id: id,
@@ -56,11 +56,7 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
         <div className="form">
           <section className="top">
             <Link to={`/meetings/${id}`} className="top_link">
-              <img
-                className="return_arrow"
-                src={arrow}
-                alt="Arrow back icon"
-              />
+              <img className="return_arrow" src={arrow} alt="Arrow back icon" />
             </Link>
             <h1 className="form__title"> + Add a New Meeting </h1>
           </section>
@@ -89,15 +85,14 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
             />
             {missing.date && <ErrorRequiredMessage />}
 
-            <label className="fields__time">Time</label>
+            <label className="fields__label">Time</label>
             <input
-            name="time"
-            type="time"    
-            className={missing.time ? "meeting__invalid" : "input"}
-            defaultValue={meeting.time}
+              name="time"
+              type="time"
+              className={missing.time ? "input--invalid" : "input"}
+              defaultValue={meeting.time}
             />
             {missing.time && <ErrorRequiredMessage />}
-
 
             <label htmlFor="description_gem" className="fields__label">
               Buddy up description:
@@ -112,24 +107,21 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
             />
             {missing.description_gem && <ErrorRequiredMessage />}
 
-            <label
-              htmlFor="description_meeting"
-              className="fields__label"
-            >
-              Why do you consider this place a hidden gem, and describe the meeting activities:
+            <label htmlFor="description_meeting" className="fields__label">
+              Why do you consider this place a hidden gem, and describe the
+              meeting activities:
             </label>
             <textarea
               id="description_meeting"
               name="description_meeting"
               className={
-                missing.description_meeting
-                  ? "textarea--invalid"
-                  : "textarea"
+                missing.description_meeting ? "textarea--invalid" : "textarea"
               }
               defaultValue={meeting.description_meeting}
             />
             {missing.description_meeting && <ErrorRequiredMessage />}
-            {isLoading && (
+
+            {isLoading && !Object.values(missing).some((val) => val) && (
               <p className="meeting-form__success">
                 Meeting Successfully Added!
               </p>
@@ -137,13 +129,9 @@ function MeetingForm({ onSubmit, meeting, isLoading }) {
 
             <footer className="footer">
               <Link to={`/meetings/${id}`}>
-                <button className="footer__button">
-                  Cancel
-                </button>
+                <button className="footer__button">Cancel</button>
               </Link>
-              <button className="footer__button">
-                Submit
-              </button>
+              <button className="footer__button">Submit</button>
             </footer>
           </section>
         </div>
