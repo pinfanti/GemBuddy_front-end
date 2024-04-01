@@ -7,7 +7,7 @@ function ErrorRequiredMessage() {
   return <p className="meeting-form__error">This field is required</p>;
 }
 
-function InterestedForm({ meeting, onSubmit }) {
+function InterestedForm({ meeting, onSubmit }) {    
   const [missing, setMissing] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
