@@ -9,9 +9,9 @@ function ErrorRequiredMessage() {
 }
 
 function InterestedForm({ meeting, onSubmit }) {    
-    const { id } = useParams();
+  const { id } = useParams();
   const [missing, setMissing] = useState({});
-  const [submitted, setSubmitted] = useState(false); // Track if form submitted
+  const [submitted, setSubmitted] = useState(false);
 
   if (!meeting) {
     meeting = {};
@@ -34,7 +34,6 @@ function InterestedForm({ meeting, onSubmit }) {
       first_name: event.target.first_name.value,
       last_name: event.target.last_name.value,
       email: event.target.email.value,
-      phone_number: event.target.phone_number.value,
       more_info: event.target.more_info.value,
     };
 
@@ -66,7 +65,7 @@ function InterestedForm({ meeting, onSubmit }) {
       <div className="interested-form">
         <div className="form">
           <section className="top">
-            <Link to={`/meetings/${id}`} className="top_link">
+            <Link to={`/meetings/${meeting.activity_id}`} className="top_link">
               <img className="return_arrow" src={arrow} alt="Arrow back icon" />
             </Link>
             <h1 className="form__title"> Interest Form </h1>
@@ -123,17 +122,6 @@ function InterestedForm({ meeting, onSubmit }) {
             />
             {missing.email && <ErrorRequiredMessage />}
 
-            <label htmlFor="phone_number" className="fields__label">
-              What is your phone number? *optional
-            </label>
-            <input
-              type="text"
-              id="phone_number"
-              name="phone_number"
-              className="input"
-              placeholder="Ex: (123)456-7890"
-            />
-
             <label htmlFor="more_info" className="fields__label">
               Please provide any additional information here!
             </label>
@@ -153,7 +141,7 @@ function InterestedForm({ meeting, onSubmit }) {
             )}
 
             <footer className="footer">
-              <Link to={`/meetings/${id}`}>
+              <Link to={`/meetings/${meeting.activity_id}`}>
                 <button className="footer__button">Cancel</button>
               </Link>
               <button type="submit" className="footer__button">

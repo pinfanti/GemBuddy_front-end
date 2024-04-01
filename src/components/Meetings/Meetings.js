@@ -97,8 +97,8 @@ function Meetings({ meetings }) {
           <p className="description__meeting">{meeting.description_meeting}</p>
         </section>
         <section className="buttons">
-          <Link to= {`/contact/${id}`}><button className="buttons__interested">Interested</button></Link>
-          <Link to={`/organizer/${meeting.user_id}`}><button className="buttons__organizer"> Organizer</button></Link>
+          <Link to= {`/contact/${meeting.id}`}><button className="buttons__interested">Interested</button></Link>
+          <Link to={`/organizer/${meeting.id}`}><button className="buttons__organizer"> Organizer</button></Link>
         </section>
       </div>
     );

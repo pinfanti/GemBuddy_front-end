@@ -1,0 +1,71 @@
+@use "../../styles/global.scss" as *;
+@use "../../styles/mixins.scss" as *;
+@use "../../styles/variables.scss" as *;
+
+.organizer{
+    display: flex;
+    flex-direction: column;
+    @include tablet{
+        flex-direction: row;
+    }
+    &__image{
+        width:100%;
+        height: auto;
+        border-radius: 10%;
+        @include tablet{
+            width:50%;
+        }
+    }
+}
+
+.organizer-info{    
+    display:flex;
+    flex-direction: column;
+    @include tablet{
+        width:50%;
+    }
+    &__wrapper{
+        display:flex;
+        justify-content: center;
+        align-items: top; 
+        @include tablet{
+            height:30%;
+        }       
+    }
+    &__wrapper2{
+        display:flex;
+        @include tablet{
+            padding-left: $tablet_between_padding;
+            height:70%;
+        }
+        &--description{
+            padding-top: 0;
+        }
+
+    }
+}
+.inquires{
+    @include tablet{        
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        &__explanation{
+            width: 75%;
+        }
+    }
+    
+}
+.button-area{
+    display: flex;
+    justify-content: center;
+    &__inquires{
+        width: 100%;
+    }
+    @include tablet{
+        width:25%;
+    }
+
+}
+.fields{
+   justify-content: center;
+}

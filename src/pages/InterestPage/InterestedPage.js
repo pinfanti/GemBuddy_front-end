@@ -32,17 +32,20 @@ function InterestedPage() {
 
     async function handleSubmit() {
       setTimeout(() => {
-        navigate(`/meetings/1`);//hardcoded because I did not have time to grab the park id to include here and it will be done in the future.
+        navigate(`/meetings/${meeting.activity_id}`);
     }, 4000);
 
 
     }
 
-       return (
-        <>
-        <InterestedForm onSubmit={handleSubmit} meeting = {meeting} />
-        </>
+    return (
+      <>
+        {meeting && (
+          <InterestedForm onSubmit={handleSubmit} meeting={meeting} />
+        )}
+      </>
     );
+  
 }
 
 export default InterestedPage;

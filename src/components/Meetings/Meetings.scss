@@ -27,11 +27,12 @@
     height: 1.5rem;
     width: 1.5rem;
     margin-left: 0.5rem;
+    cursor: pointer; 
   }
 
   .tooltip {
     position: absolute;
-    top: 120px;
+    top: 100px;
     left: calc(20%); 
     z-index: 999;
     background-color: rgba(5, 30, 51, 0.8);
@@ -74,6 +75,7 @@
   .delete{
     display: flex;
     justify-content: center;
+    cursor: pointer; 
     padding-bottom: 0.5rem;
     &__option{
       color:rgb(14, 45, 57);
