@@ -78,7 +78,7 @@ function Meetings({ meetings }) {
               <strong>Starting Time:</strong> {meeting.hour} am
             </p>
             <p className="information__duration">
-              <strong>Duration:</strong> Approximately half-day
+              <strong>Duration:</strong> Approximately half-day {/* I understand that this should be part of the fields of my form, but I did not include this info in the database and I am running out in time, so i will keep hardcoded for now and cahnge it in futute iteration. */}
             </p>
             <p className="information__value">
               <strong>Value:</strong>{" "}
@@ -97,8 +97,8 @@ function Meetings({ meetings }) {
           <p className="description__meeting">{meeting.description_meeting}</p>
         </section>
         <section className="buttons">
-          <Link><button className="buttons__interested">Interested</button></Link>
-          <Link to={`organizer/${meeting.user_id}`}><button className="buttons__organizer"> Organizer</button></Link>
+          <Link to= {`/contact/${id}`}><button className="buttons__interested">Interested</button></Link>
+          <Link to={`/organizer/${meeting.user_id}`}><button className="buttons__organizer"> Organizer</button></Link>
         </section>
       </div>
     );
@@ -108,7 +108,7 @@ function Meetings({ meetings }) {
     return (
       <section className="meetings">
         <section className="meetings__header">
-          <Link to={`/park/1`}>
+          <Link to={`/park/1`}> {/*hardcoded because I did not have time to grab the park id to include here and it will be done in the future.*/}
             <img
               className="return_arrow"
               src={arrow}
