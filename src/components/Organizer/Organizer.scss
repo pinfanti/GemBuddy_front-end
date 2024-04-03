@@ -34,36 +34,31 @@
     }
     &__wrapper2{
         display:flex;
+        font-size: 1.5rem;
         @include tablet{
             padding-left: $tablet_between_padding;
             height:70%;
+            
         }
         &--description{
             padding-top: 0;
+            font-size: 1.5rem;
+            @include tablet{
+                font-size: 1.75rem;
+                
+            }
         }
 
     }
 }
-.inquires{
-    @include tablet{        
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        &__explanation{
-            width: 75%;
-        }
-    }
-    
-}
+
 .button-area{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     &__inquires{
-        width: 100%;
+        width: 40%;
     }
-    @include tablet{
-        width:25%;
-    }
+   
 
 }
 .fields{
