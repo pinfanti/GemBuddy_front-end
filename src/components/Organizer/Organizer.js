@@ -79,20 +79,11 @@ function Organizer({ meeting, onSubmit }) {
                 </h1>
               </section>
               <section className="organizer-info__wrapper2">
-                <h3 className="organizer-info__wrapper2--description">
+                <p className="organizer-info__wrapper2--description">
                   {meeting.description}
-                </h3>
+                </p>
               </section>
-            </section>
-            )}
-          </section>
-          <section className="inquires">
-            <p className="inquires__explanation">
-              If you have any inquiries, questions, or concerns for the
-              organizer, click the contact button. The organizer normally
-              responds quickly (same-day reply).
-            </p>
-            <section className="button-area">
+              <section className="button-area">
               <button
                 className="button-area__inquires"
                 onClick={() => setShowForm(true)}
@@ -100,7 +91,10 @@ function Organizer({ meeting, onSubmit }) {
                 Contact
               </button>
             </section>
-          </section>
+            </section>            
+            )}
+          </section>          
+          
         </>
       )}
 
